@@ -1,0 +1,767 @@
+@import "tailwindcss";
+@import "@fontsource/archivo/400.css";
+@import "@fontsource/archivo/500.css";
+@import "@fontsource/archivo/500-italic.css";
+@import "@fontsource/archivo/700.css";
+@import "@fontsource/archivo/800.css";
+@import "@fontsource/archivo/800-italic.css";
+@import "@fontsource/archivo/900.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+@theme {
+  --color-ink: #121211;
+  --color-ink-raised: #191816;
+  --color-paper: #efede6;
+  --color-muted: #8d8a80;
+  --color-line: #2c2a26;
+  --color-accent: #e8552e;
+
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Native cross-document transitions between pages. Progressive enhancement:
+   unsupported browsers ignore this and every view-transition-name below. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.vt-header {
+  view-transition-name: site-header;
+}
+
+.vt-kinema {
+  view-transition-name: vt-kinema;
+}
+.vt-undertow {
+  view-transition-name: vt-undertow;
+}
+.vt-maren {
+  view-transition-name: vt-maren;
+}
+.vt-signal {
+  view-transition-name: vt-signal;
+}
+
+html {
+  color-scheme: dark;
+  /* Lenis (src/main.ts) owns smooth scrolling when JS runs; native smooth-scroll
+     would double up with it, so this is the no-JS / pre-init fallback only. */
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+}
+
+/* Lenis recommended resets. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.container-page {
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+/* Fixed film-grain texture. Static (no per-frame redraw) to stay cheap on mobile GPUs. */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background: #fff;
+  filter: url(#grain-filter);
+  mix-blend-mode: overlay;
+}
+
+/* Scroll progress, pinned to the nav's bottom edge. Width driven by GSAP ScrollTrigger. */
+.scroll-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--color-accent);
+  pointer-events: none;
+}
+
+header[data-scrolled="true"] {
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.3);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Reveal-on-scroll: a clip wipe rather than the generic fade-up. JS toggles [data-revealed]. */
+[data-reveal] {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease;
+  will-change: clip-path;
+}
+
+[data-reveal][data-revealed="true"] {
+  clip-path: inset(0 0 0% 0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    clip-path: none;
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* Italic emphasis inside display headlines needs descender clearance. */
+.ink-italic {
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1.15;
+  padding-bottom: 0.08em;
+  display: inline-block;
+}
+
+/* Magnetic pull on buttons/links. JS sets translate via pointermove, resets on leave. */
+[data-magnetic] {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Tools marquee: the page's single marquee instance. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 36s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Work tile cursor-follow glow. JS sets --mx/--my from pointer position. */
+.tile-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.tile-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(232 85 46 / 0.16),
+    transparent 70%
+  );
+}
+
+.tile-glow:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-glow::after {
+    display: none;
+  }
+}
+
+/* Work grid filter: hidden tiles are removed from layout after their fade finishes. */
+.work-tile {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.work-tile[data-hidden="true"] {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.filter-pill[data-active="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* Capabilities: horizontal-pan scroll-hijack on desktop, plain stack on mobile/reduced-motion. */
+.capabilities-pan {
+  position: relative;
+}
+
+.capabilities-track {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .capabilities-pan[data-pan-ready="true"] {
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  .capabilities-pan[data-pan-ready="true"] .capabilities-track {
+    flex-direction: row;
+    height: 100%;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .capabilities-pan[data-pan-ready="true"] .capability-panel {
+    width: 100vw;
+    height: 100%;
+    flex: none;
+  }
+}
+
+.capability-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 70dvh;
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--color-line);
+  overflow: hidden;
+}
+
+.capability-panel__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.capability-panel__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.capability-panel__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(18 18 17 / 0.92), rgb(18 18 17 / 0.35) 55%, rgb(18 18 17 / 0.55));
+}
+
+/* Preloader. Hard-fails open: no-JS and reduced-motion both skip it. */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-ink);
+}
+
+.preloader-mark {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    display: none;
+  }
+}
+
+/* Split-text reveal: JS wraps words in a mask (clips) + an inner span (slides), animates with GSAP. */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+}
+
+.split-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Testimonial word-sweep: JS wraps words, lights them up as the quote scrolls into view. */
+.sweep-word {
+  color: rgb(239 237 230 / 0.3);
+  transition: color 0.4s ease;
+}
+
+.sweep-word.is-lit {
+  color: rgb(239 237 230 / 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sweep-word {
+    color: inherit;
+    transition: none;
+  }
+}
+
+/* Work tiles: horizontal mask wipe, alternating direction, distinct from the vertical wipe elsewhere.
+   Transition list includes `transform` too: these elements are also `.work-tile`, and since this
+   selector has equal specificity and comes later, it would otherwise silently drop the transform
+   transition that the work-filter's scale-down-on-hide relies on. */
+[data-reveal-dir] {
+  opacity: 0;
+  transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease, transform 0.35s ease;
+  will-change: clip-path;
+}
+
+[data-reveal-dir="left"] {
+  clip-path: inset(0 100% 0 0);
+}
+
+[data-reveal-dir="right"] {
+  clip-path: inset(0 0 0 100%);
+}
+
+[data-reveal-dir][data-revealed="true"] {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal-dir] {
+    clip-path: none;
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* Ken Burns: a slow settle-zoom tied to the same [data-revealed] toggle as the clip reveal. */
+.ken-burns {
+  transform: scale(1.12);
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-revealed="true"] .ken-burns {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero halftone canvas: a lightweight 2D stand-in for a WebGL background. */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+/* Oversized outline typography sitting behind a section's real content. */
+.ghost-text {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ghost-text span {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(7rem, 24vw, 17rem);
+  line-height: 1;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(239 237 230 / 0.08);
+}
+
+.ghost-text--compact span {
+  font-size: clamp(3rem, 9vw, 6rem);
+}
+
+/* Highlighter-marker emphasis for an inline phrase. */
+.marker {
+  background: linear-gradient(to top, rgb(232 85 46 / 0.32) 58%, transparent 58%);
+  padding-inline: 0.05em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Command palette (Cmd/Ctrl+K). */
+.command-palette {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  padding: 14vh 1.25rem 0;
+}
+
+.command-palette[hidden] {
+  display: none;
+}
+
+.command-palette__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(18 18 17 / 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.command-palette__panel {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-ink-raised);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.5);
+}
+
+.command-palette__input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-muted);
+}
+
+.command-palette__input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-paper);
+  font-size: 1rem;
+  font-family: var(--font-body);
+}
+
+.command-palette__input-row input::placeholder {
+  color: var(--color-muted);
+}
+
+.command-palette__input-row kbd {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-line);
+  padding: 0.15rem 0.4rem;
+}
+
+.command-palette__list {
+  overflow-y: auto;
+  padding: 0.5rem;
+  list-style: none;
+}
+
+.command-palette__empty {
+  padding: 1rem 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.command-palette__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0.75rem;
+  color: var(--color-paper);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.command-palette__item.is-active {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.command-palette__item.is-active .command-palette__category {
+  color: var(--color-ink);
+  opacity: 0.7;
+}
+
+.command-palette__category {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+/* Before / after comparison slider. */
+.compare {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.compare img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.compare__after {
+  clip-path: inset(0 0 0 var(--compare-pos, 50%));
+}
+
+.compare__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--compare-pos, 50%);
+  width: 2px;
+  background: var(--color-paper);
+  transform: translateX(-50%);
+  cursor: ew-resize;
+}
+
+.compare__handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: var(--color-paper);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+}
+
+.compare__handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121211' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 7L3 12l5 5M16 7l5 5-5 5'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.compare__label {
+  position: absolute;
+  bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-paper);
+  background: rgb(18 18 17 / 0.65);
+  padding: 0.3rem 0.6rem;
+}
+
+.compare__label--before {
+  left: 1rem;
+}
+
+.compare__label--after {
+  right: 1rem;
+}
+
+/* Process timeline. */
+.timeline {
+  position: relative;
+  border-left: 1px solid var(--color-line);
+}
+
+.timeline-step {
+  position: relative;
+  padding: 0 0 3rem 2rem;
+}
+
+.timeline-step:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-step::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 0.4rem;
+  width: 9px;
+  height: 9px;
+  background: var(--color-accent);
+}
+
+.timeline-step img {
+  margin-top: 1.25rem;
+  width: 100%;
+  max-width: 420px;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* Hamburger: the two bars morph into an X when the mobile menu is open. */
+[data-nav-toggle] span {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-nav-toggle][aria-expanded="true"] span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+[data-nav-toggle][aria-expanded="true"] span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-nav-toggle] span {
+    transition: none;
+  }
+}
+
+/* Mobile menu: animates open/closed via the grid-rows trick (0fr -> 1fr) so height can transition without a hardcoded max-height. */
+.mobile-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.mobile-menu__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mobile-menu__content {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mobile-menu[data-open="true"] .mobile-menu__content {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    transition: none;
+  }
+
+  .mobile-menu__content {
+    transition: none;
+  }
+}
+
+/* Print: a clean, minimal single-column rendition of a case-study page. */
+@media print {
+  .grain-overlay,
+  .scroll-progress,
+  .preloader,
+  [data-nav-toggle],
+  [data-command-trigger],
+  .command-palette,
+  .hero-canvas,
+  nav,
+  footer,
+  .ghost-text,
+  a[href^="/index.html#work"] {
+    display: none !important;
+  }
+
+  header {
+    position: static !important;
+    border: none !important;
+    background: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .capabilities-pan[data-pan-ready] {
+    height: auto !important;
+  }
+
+  [data-reveal],
+  [data-reveal-dir] {
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: none !important;
+  }
+}

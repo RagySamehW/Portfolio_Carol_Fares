@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carol Fares - Graphic Designer</title>
+    <meta
+      name="description"
+      content="Carol Fares is a graphic designer working across brand identity, editorial layout, and packaging."
+    />
+    <link rel="canonical" href="https://carolfares.studio/" />
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="./src/style.css">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Carol Fares" />
+    <meta property="og:title" content="Carol Fares - Graphic Designer" />
+    <meta
+      property="og:description"
+      content="Carol Fares is a graphic designer working across brand identity, editorial layout, and packaging."
+    />
+    <meta property="og:url" content="https://carolfares.studio/" />
+    <meta property="og:image" content="https://carolfares.studio/og/home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Carol Fares - Graphic Designer" />
+    <meta
+      name="twitter:description"
+      content="Carol Fares is a graphic designer working across brand identity, editorial layout, and packaging."
+    />
+    <meta name="twitter:image" content="https://carolfares.studio/og/home.png" />
+
+    <!-- Privacy-friendly analytics placeholder. Sign up at plausible.io, swap in your
+         domain, then uncomment. See README for Fathom/other alternatives. -->
+    <!-- <script defer data-domain="carolfares.studio" src="https://plausible.io/js/script.js"></script> -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Carol Fares",
+        "jobTitle": "Graphic Designer",
+        "url": "https://carolfares.studio/",
+        "email": "mailto:hello@carolfares.studio",
+        "sameAs": ["https://instagram.com", "https://linkedin.com", "https://behance.net"],
+        "knowsAbout": ["Brand Identity", "Editorial Design", "Packaging", "Art Direction"]
+      }
+    </script>
+  </head>
+  <body class="bg-ink text-paper font-body antialiased">
+    <!-- Intro: skips itself under prefers-reduced-motion or no-JS -->
+    <noscript><style>[data-preloader] { display: none !important; }</style></noscript>
+    <div class="preloader" data-preloader aria-hidden="true">
+      <p class="preloader-mark font-display text-2xl font-800 tracking-tight"><span>Carol Fares</span></p>
+    </div>
+
+    <!-- Film-grain texture: fixed, static, pointer-events-none -->
+    <svg class="absolute h-0 w-0" aria-hidden="true">
+      <filter id="grain-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise" />
+        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0" />
+      </filter>
+    </svg>
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- Command palette (Cmd/Ctrl+K) -->
+    <div class="command-palette" data-command-palette hidden aria-hidden="true">
+      <div class="command-palette__backdrop" data-command-backdrop></div>
+      <div class="command-palette__panel" role="dialog" aria-modal="true" aria-label="Quick navigation">
+        <div class="command-palette__input-row">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4" />
+            <path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+          <input type="text" data-command-input placeholder="Jump to..." autocomplete="off" aria-label="Search pages and projects" />
+          <kbd>Esc</kbd>
+        </div>
+        <ul data-command-list class="command-palette__list"></ul>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <header data-nav class="vt-header fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/90 backdrop-blur-sm">
+      <div class="container-page flex h-[72px] items-center justify-between px-6 lg:px-10">
+        <a href="./index.html" class="font-display text-lg font-800 tracking-tight">Carol Fares</a>
+
+        <nav class="hidden items-center gap-10 lg:flex">
+          <a href="#work" class="nav-link text-sm text-paper/80 transition-colors hover:text-paper">Work</a>
+          <a href="./about.html" class="nav-link text-sm text-paper/80 transition-colors hover:text-paper">About</a>
+          <a
+            href="#contact"
+            data-magnetic
+            class="rounded-full border border-paper/25 px-5 py-2 text-sm transition-colors hover:border-accent hover:text-accent"
+            >Get in touch</a
+          >
+          <button
+            type="button"
+            data-command-trigger
+            aria-label="Open quick navigation"
+            class="flex items-center gap-2 rounded-full border border-paper/25 px-3 py-2 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
+          >
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4" />
+              <path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            </svg>
+            <span class="font-mono">⌘K</span>
+          </button>
+        </nav>
+
+        <button
+          data-nav-toggle
+          aria-expanded="false"
+          aria-label="Toggle menu"
+          class="flex h-9 w-9 flex-col items-center justify-center gap-1.5 lg:hidden"
+        >
+          <span class="h-px w-6 bg-paper"></span>
+          <span class="h-px w-6 bg-paper"></span>
+        </button>
+      </div>
+
+      <nav data-nav-menu-mobile data-open="false" class="mobile-menu lg:hidden">
+        <div class="mobile-menu__inner">
+          <div class="mobile-menu__content flex flex-col gap-1 border-t border-line bg-ink px-6 py-4">
+            <a href="#work" class="py-3 text-base">Work</a>
+            <a href="./about.html" class="py-3 text-base">About</a>
+            <a href="#contact" class="py-3 text-base text-accent">Get in touch</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    </header>
+
+    <main>
+      <!-- Hero: asymmetric split -->
+      <section class="relative overflow-hidden pt-24">
+        <canvas class="hero-canvas" data-hero-canvas aria-hidden="true"></canvas>
+        <div class="container-page grid gap-10 px-6 pb-16 lg:grid-cols-[1.2fr_1fr] lg:gap-6 lg:px-10 lg:pb-24">
+          <div class="flex flex-col justify-center">
+            <h1
+              data-hero-title
+              class="font-display text-[clamp(2.5rem,6vw,4.75rem)] font-800 leading-[1.05] tracking-tight"
+            >
+              <span class="word-mask"><span class="split-word">Graphic</span></span>
+              <span class="word-mask"><span class="split-word">design</span></span>
+              <span class="word-mask"><span class="split-word">with</span></span>
+              <span class="word-mask"><span class="split-word">an</span></span>
+              <span class="word-mask"
+                ><span
+                  class="ink-italic split-word text-accent"
+                  data-scramble
+                  data-scramble-text="opinion"
+                  >opinion</span
+                ></span
+              >.
+            </h1>
+            <p data-hero-sub class="mt-6 max-w-[34ch] text-lg text-paper/75">
+              Brand identity, editorial layout, and packaging for clients who'd rather stand out than fit in.
+            </p>
+            <div data-hero-ctas class="mt-9 flex flex-wrap items-center gap-4">
+              <a
+                href="#work"
+                data-magnetic
+                class="rounded-full bg-accent px-7 py-3.5 text-sm font-500 text-ink transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
+                >View work</a
+              >
+              <a
+                href="#contact"
+                data-magnetic
+                class="rounded-full border border-paper/25 px-7 py-3.5 text-sm font-500 transition-colors hover:border-accent hover:text-accent"
+                >Get in touch</a
+              >
+            </div>
+          </div>
+
+          <div class="relative lg:-mr-10" data-reveal>
+            <div data-tilt>
+              <img
+                src="https://picsum.photos/seed/carol-fares-portrait-studio/900/1100"
+                alt="Carol Fares in the studio"
+                width="900"
+                height="1100"
+                class="h-[380px] w-full object-cover lg:h-[560px]"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tools marquee: the page's single marquee -->
+      <section class="border-y border-line py-7" aria-label="Design tools">
+        <div class="overflow-hidden">
+          <div class="marquee-track items-center gap-16 pr-16 font-mono text-sm uppercase tracking-[0.08em] text-muted">
+            <span class="flex shrink-0 items-center gap-16">
+              <span>Adobe Illustrator</span>
+              <span>Adobe InDesign</span>
+              <span>Adobe Photoshop</span>
+              <span>Figma</span>
+              <span>Cinema 4D</span>
+              <span>Risograph</span>
+            </span>
+            <span class="flex shrink-0 items-center gap-16" aria-hidden="true">
+              <span>Adobe Illustrator</span>
+              <span>Adobe InDesign</span>
+              <span>Adobe Photoshop</span>
+              <span>Figma</span>
+              <span>Cinema 4D</span>
+              <span>Risograph</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- About: split text / image -->
+      <section id="about" class="container-page px-6 py-24 lg:px-10 lg:py-32">
+        <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16">
+          <div class="order-2 lg:order-1 overflow-hidden" data-reveal>
+            <img
+              src="https://picsum.photos/seed/carol-fares-studio-desk/1000/1200"
+              alt="Studio desk with print proofs and type specimens"
+              width="1000"
+              height="1200"
+              class="ken-burns h-[360px] w-full object-cover lg:h-[520px]"
+              loading="lazy"
+            />
+          </div>
+          <div class="order-1 lg:order-2">
+            <h2 data-split-reveal class="font-display text-3xl font-700 leading-tight lg:text-4xl">
+              Ten years making things that hold up in print and on screen.
+            </h2>
+            <div data-reveal>
+              <p class="mt-6 max-w-[58ch] text-paper/75">
+                I work with small labels, independent publishers, and founders who need a visual
+                system with <span class="marker">real structure</span>, not just a logo. Most
+                projects start with a brand identity and grow into the posters, packaging, and
+                pages that carry it.
+              </p>
+              <ul class="mt-9 flex flex-wrap gap-3">
+                <li class="rounded-full border border-line px-4 py-2 text-sm text-paper/80">Brand Identity</li>
+                <li class="rounded-full border border-line px-4 py-2 text-sm text-paper/80">Editorial Design</li>
+                <li class="rounded-full border border-line px-4 py-2 text-sm text-paper/80">Packaging</li>
+                <li class="rounded-full border border-line px-4 py-2 text-sm text-paper/80">Art Direction</li>
+              </ul>
+              <a href="./about.html" data-magnetic class="mt-7 inline-flex items-center gap-2 text-sm text-accent underline-offset-4 hover:underline">
+                Read the full story
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M4 8H12M12 8L8 4M12 8L8 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work: bento grid, 4 items, 4 cells, filterable -->
+      <section id="work" class="container-page px-6 py-24 lg:px-10 lg:py-32">
+        <div class="relative isolate flex flex-wrap items-end justify-between gap-6">
+          <div class="ghost-text ghost-text--compact" aria-hidden="true"><span>Work</span></div>
+          <h2 data-split-reveal class="font-display text-3xl font-700 lg:text-4xl">Selected work</h2>
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filter work by discipline" data-reveal>
+            <button type="button" data-filter="all" data-active="true" aria-pressed="true" class="filter-pill rounded-full border border-line px-4 py-2 text-sm transition-colors hover:border-accent">All</button>
+            <button type="button" data-filter="branding" data-active="false" aria-pressed="false" class="filter-pill rounded-full border border-line px-4 py-2 text-sm transition-colors hover:border-accent">Branding</button>
+            <button type="button" data-filter="editorial" data-active="false" aria-pressed="false" class="filter-pill rounded-full border border-line px-4 py-2 text-sm transition-colors hover:border-accent">Editorial</button>
+            <button type="button" data-filter="packaging" data-active="false" aria-pressed="false" class="filter-pill rounded-full border border-line px-4 py-2 text-sm transition-colors hover:border-accent">Packaging</button>
+            <button type="button" data-filter="art-direction" data-active="false" aria-pressed="false" class="filter-pill rounded-full border border-line px-4 py-2 text-sm transition-colors hover:border-accent">Art Direction</button>
+          </div>
+        </div>
+
+        <div class="relative mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 md:auto-rows-[minmax(260px,auto)]">
+          <a
+            href="./work/kinema.html"
+            data-reveal-dir="left"
+            data-category="branding"
+            class="vt-kinema work-tile tile-glow group relative block md:col-span-2 md:row-span-2"
+          >
+            <img
+              src="https://picsum.photos/seed/kinema-film-festival-poster/1400/1400"
+              alt="Kinema Film Festival brand identity"
+              width="1400"
+              height="1400"
+              class="h-[320px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-full"
+              loading="lazy"
+            />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-6">
+              <p class="font-mono text-xs uppercase tracking-[0.08em] text-muted">Branding, Art Direction</p>
+              <p class="mt-1 font-display text-2xl font-700">Kinema Film Festival</p>
+            </div>
+          </a>
+
+          <a
+            href="./work/undertow.html"
+            data-reveal-dir="right"
+            data-category="art-direction"
+            class="vt-undertow work-tile tile-glow group relative block"
+          >
+            <img
+              src="https://picsum.photos/seed/undertow-records-sleeve/900/900"
+              alt="Undertow Records poster series"
+              width="900"
+              height="900"
+              class="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-full"
+              loading="lazy"
+            />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-6">
+              <p class="font-mono text-xs uppercase tracking-[0.08em] text-muted">Poster Series</p>
+              <p class="mt-1 font-display text-xl font-700">Undertow Records</p>
+            </div>
+          </a>
+
+          <a
+            href="./work/maren.html"
+            data-reveal-dir="left"
+            data-category="packaging"
+            class="vt-maren work-tile tile-glow group relative block"
+          >
+            <img
+              src="https://picsum.photos/seed/maren-skincare-packaging/900/900"
+              alt="Maren skincare packaging system"
+              width="900"
+              height="900"
+              class="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-full"
+              loading="lazy"
+            />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-6">
+              <p class="font-mono text-xs uppercase tracking-[0.08em] text-muted">Packaging</p>
+              <p class="mt-1 font-display text-xl font-700">Maren Skincare</p>
+            </div>
+          </a>
+
+          <a
+            href="./work/signal.html"
+            data-reveal-dir="right"
+            data-category="editorial"
+            class="vt-signal work-tile tile-glow group relative block md:col-span-3"
+          >
+            <img
+              src="https://picsum.photos/seed/signal-quarterly-editorial-spread/1600/640"
+              alt="Signal Quarterly editorial redesign"
+              width="1600"
+              height="640"
+              class="h-[220px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[280px]"
+              loading="lazy"
+            />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-6">
+              <p class="font-mono text-xs uppercase tracking-[0.08em] text-muted">Editorial Design</p>
+              <p class="mt-1 font-display text-xl font-700">Signal Quarterly</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Capabilities: horizontal-pan on desktop (pinned, scrubbed), plain stack on mobile and reduced-motion -->
+      <section class="border-t border-line">
+        <div class="container-page px-6 pt-24 lg:px-10 lg:pt-32">
+          <h2 data-split-reveal class="font-display text-3xl font-700 lg:text-4xl">What I do</h2>
+        </div>
+
+        <div class="mt-10 capabilities-pan" data-capabilities-pan>
+          <div class="capabilities-track" data-capabilities-track>
+            <article class="capability-panel">
+              <div class="capability-panel__bg">
+                <img
+                  src="https://picsum.photos/seed/carol-fares-capability-identity/1600/1000"
+                  alt=""
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+              </div>
+              <div class="container-page w-full px-6 lg:px-10">
+                <span class="font-mono text-sm text-muted">01</span>
+                <h3 class="mt-2 font-display text-4xl font-800 lg:text-6xl">Brand Identity</h3>
+                <p class="mt-4 max-w-[46ch] text-paper/75">
+                  Logo systems, type pairing, and the rules that hold a brand together across
+                  every surface it touches.
+                </p>
+              </div>
+            </article>
+
+            <article class="capability-panel">
+              <div class="capability-panel__bg">
+                <img
+                  src="https://picsum.photos/seed/carol-fares-capability-editorial/1600/1000"
+                  alt=""
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+              </div>
+              <div class="container-page w-full px-6 lg:px-10">
+                <span class="font-mono text-sm text-muted">02</span>
+                <h3 class="mt-2 font-display text-4xl font-800 lg:text-6xl">Editorial Design</h3>
+                <p class="mt-4 max-w-[46ch] text-paper/75">
+                  Magazine and report layouts built on a real grid, not a template stretched to
+                  fit.
+                </p>
+              </div>
+            </article>
+
+            <article class="capability-panel">
+              <div class="capability-panel__bg">
+                <img
+                  src="https://picsum.photos/seed/carol-fares-capability-packaging/1600/1000"
+                  alt=""
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+              </div>
+              <div class="container-page w-full px-6 lg:px-10">
+                <span class="font-mono text-sm text-muted">03</span>
+                <h3 class="mt-2 font-display text-4xl font-800 lg:text-6xl">Packaging</h3>
+                <p class="mt-4 max-w-[46ch] text-paper/75">
+                  Structural and print-ready packaging that still looks good on a shelf, not just
+                  in a render.
+                </p>
+              </div>
+            </article>
+
+            <article class="capability-panel">
+              <div class="capability-panel__bg">
+                <img
+                  src="https://picsum.photos/seed/carol-fares-capability-art-direction-02/1600/1000"
+                  alt=""
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+              </div>
+              <div class="container-page w-full px-6 lg:px-10">
+                <span class="font-mono text-sm text-muted">04</span>
+                <h3 class="mt-2 font-display text-4xl font-800 lg:text-6xl">Art Direction</h3>
+                <p class="mt-4 max-w-[46ch] text-paper/75">
+                  Photo, motion, and set direction for campaigns and launches, from mood board to
+                  final frame.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonial -->
+      <!-- TODO: placeholder quote, replace with a real client testimonial before publishing. -->
+      <section class="container-page px-6 py-24 lg:px-10 lg:py-32">
+        <blockquote class="mx-auto max-w-[46ch] text-center">
+          <p data-quote-sweep class="font-display text-2xl font-500 leading-snug lg:text-3xl">
+            "Carol rebuilt our visual identity in a month and it still feels true to the label two
+            years later."
+          </p>
+          <footer class="mt-6 text-sm text-muted" data-reveal>
+            Priya Nandakumar <span class="mx-2">·</span> Creative Director, Undertow Records
+          </footer>
+        </blockquote>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="relative isolate border-t border-line">
+        <div class="ghost-text" aria-hidden="true"><span>Talk</span></div>
+        <div class="container-page px-6 py-24 lg:px-10 lg:py-32">
+          <div class="flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-end">
+            <div>
+              <p class="mb-5 text-sm text-muted" data-reveal>Taking on new projects starting Q1 2026.</p>
+              <h2 data-split-reveal class="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-800 leading-[1.05]">
+                Let's start something.
+              </h2>
+              <a
+                href="mailto:hello@carolfares.studio"
+                data-magnetic
+                data-reveal
+                class="mt-6 inline-flex items-center gap-2 text-lg text-accent underline-offset-4 hover:underline"
+              >
+                hello@carolfares.studio
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="flex items-center gap-5" data-reveal>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-magnetic>
+                <img src="https://cdn.simpleicons.org/instagram/efede6" alt="" width="22" height="22" loading="lazy" />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-magnetic class="text-paper">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <a href="https://behance.net" target="_blank" rel="noopener noreferrer" aria-label="Behance" data-magnetic>
+                <img src="https://cdn.simpleicons.org/behance/efede6" alt="" width="22" height="22" loading="lazy" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="container-page flex flex-col gap-4 px-6 py-8 text-sm text-muted lg:flex-row lg:items-center lg:justify-between lg:px-10">
+        <p>© <span data-year></span> Carol Fares</p>
+        <a href="#work" class="hover:text-paper">Back to work</a>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

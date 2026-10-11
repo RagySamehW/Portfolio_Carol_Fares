@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Carol Fares</title>
+    <meta
+      name="description"
+      content="Carol Fares is a graphic designer working across brand identity, editorial layout, and packaging. Ten years in, here's the background."
+    />
+    <link rel="canonical" href="https://carolfares.studio/about.html" />
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="./src/style.css">
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Carol Fares" />
+    <meta property="og:title" content="About - Carol Fares" />
+    <meta
+      property="og:description"
+      content="Carol Fares is a graphic designer working across brand identity, editorial layout, and packaging. Ten years in, here's the background."
+    />
+    <meta property="og:url" content="https://carolfares.studio/about.html" />
+    <meta property="og:image" content="https://carolfares.studio/og/about.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About - Carol Fares" />
+    <meta
+      name="twitter:description"
+      content="Carol Fares is a graphic designer working across brand identity, editorial layout, and packaging. Ten years in, here's the background."
+    />
+    <meta name="twitter:image" content="https://carolfares.studio/og/about.png" />
+
+    <!-- <script defer data-domain="carolfares.studio" src="https://plausible.io/js/script.js"></script> -->
+  </head>
+  <body class="bg-ink text-paper font-body antialiased">
+    <svg class="absolute h-0 w-0" aria-hidden="true">
+      <filter id="grain-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise" />
+        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0" />
+      </filter>
+    </svg>
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <div class="command-palette" data-command-palette hidden aria-hidden="true">
+      <div class="command-palette__backdrop" data-command-backdrop></div>
+      <div class="command-palette__panel" role="dialog" aria-modal="true" aria-label="Quick navigation">
+        <div class="command-palette__input-row">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4" />
+            <path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+          <input type="text" data-command-input placeholder="Jump to..." autocomplete="off" aria-label="Search pages and projects" />
+          <kbd>Esc</kbd>
+        </div>
+        <ul data-command-list class="command-palette__list"></ul>
+      </div>
+    </div>
+
+    <header data-nav class="vt-header fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/90 backdrop-blur-sm">
+      <div class="container-page flex h-[72px] items-center justify-between px-6 lg:px-10">
+        <a href="./index.html" class="font-display text-lg font-800 tracking-tight">Carol Fares</a>
+
+        <nav class="hidden items-center gap-10 lg:flex">
+          <a href="./index.html#work" class="nav-link text-sm text-paper/80 transition-colors hover:text-paper">Work</a>
+          <a href="./about.html" class="nav-link text-sm text-paper">About</a>
+          <a
+            href="./index.html#contact"
+            data-magnetic
+            class="rounded-full border border-paper/25 px-5 py-2 text-sm transition-colors hover:border-accent hover:text-accent"
+            >Get in touch</a
+          >
+          <button
+            type="button"
+            data-command-trigger
+            aria-label="Open quick navigation"
+            class="flex items-center gap-2 rounded-full border border-paper/25 px-3 py-2 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
+          >
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4" />
+              <path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            </svg>
+            <span class="font-mono">⌘K</span>
+          </button>
+        </nav>
+
+        <button
+          data-nav-toggle
+          aria-expanded="false"
+          aria-label="Toggle menu"
+          class="flex h-9 w-9 flex-col items-center justify-center gap-1.5 lg:hidden"
+        >
+          <span class="h-px w-6 bg-paper"></span>
+          <span class="h-px w-6 bg-paper"></span>
+        </button>
+      </div>
+
+      <nav data-nav-menu-mobile data-open="false" class="mobile-menu lg:hidden">
+        <div class="mobile-menu__inner">
+          <div class="mobile-menu__content flex flex-col gap-1 border-t border-line bg-ink px-6 py-4">
+            <a href="./index.html#work" class="py-3 text-base">Work</a>
+            <a href="./about.html" class="py-3 text-base text-accent">About</a>
+            <a href="./index.html#contact" class="py-3 text-base">Get in touch</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    </header>
+
+    <main class="pt-24">
+      <!-- Intro -->
+      <section class="relative overflow-hidden">
+        <canvas class="hero-canvas" data-hero-canvas aria-hidden="true"></canvas>
+        <div class="container-page grid gap-10 px-6 pb-16 pt-8 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:px-10 lg:pb-24 lg:pt-10">
+          <div class="flex flex-col justify-center">
+            <h1 data-split-reveal class="font-display text-[clamp(2.25rem,5.5vw,4rem)] font-800 leading-[1.05]">
+              Ten years of making things that hold up.
+            </h1>
+            <div data-reveal>
+              <p class="mt-6 max-w-[56ch] text-lg text-paper/75">
+                Carol Fares is a graphic designer working across brand identity, editorial
+                layout, and packaging. The work starts with a question most clients haven't
+                fully answered yet: what does this actually need to say, and to whom?
+              </p>
+              <p class="mt-5 max-w-[56ch] text-paper/75">
+                Ten years in, the process hasn't changed much. Every project gets a real grid,
+                a type system built to hold weight, and enough structure that the next person
+                touching it doesn't have to guess. I work with clients across time zones, mostly
+                over video calls and too much coffee.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative" data-reveal>
+            <div data-tilt>
+              <img
+                src="https://picsum.photos/seed/carol-fares-about-portrait/900/1100"
+                alt="Carol Fares"
+                width="900"
+                height="1100"
+                class="h-[380px] w-full object-cover lg:h-[560px]"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Career timeline -->
+      <section class="border-t border-line">
+        <div class="container-page px-6 py-24 lg:px-10 lg:py-32">
+          <h2 data-split-reveal class="font-display text-3xl font-700 lg:text-4xl">The short version</h2>
+
+          <div class="timeline mt-12 max-w-2xl">
+            <div class="timeline-step" data-reveal>
+              <span class="font-mono text-xs text-muted">2016</span>
+              <h3 class="mt-1 font-display text-xl font-700">Started out</h3>
+              <p class="mt-2 max-w-[48ch] text-sm text-paper/70">
+                Junior designer at a small print studio, learning production constraints the
+                hard way.
+              </p>
+            </div>
+            <div class="timeline-step" data-reveal>
+              <span class="font-mono text-xs text-muted">2018</span>
+              <h3 class="mt-1 font-display text-xl font-700">Went independent</h3>
+              <p class="mt-2 max-w-[48ch] text-sm text-paper/70">
+                Left to freelance full-time, picking up small identity and poster projects for
+                local clients.
+              </p>
+            </div>
+            <div class="timeline-step" data-reveal>
+              <span class="font-mono text-xs text-muted">2020</span>
+              <h3 class="mt-1 font-display text-xl font-700">First real system</h3>
+              <p class="mt-2 max-w-[48ch] text-sm text-paper/70">
+                Built a full brand system for an independent publisher, the first project with
+                genuine production demands.
+              </p>
+            </div>
+            <div class="timeline-step" data-reveal>
+              <span class="font-mono text-xs text-muted">2022</span>
+              <h3 class="mt-1 font-display text-xl font-700">Added packaging</h3>
+              <p class="mt-2 max-w-[48ch] text-sm text-paper/70">
+                Structural packaging joined the practice, one die line and one shelf test at a
+                time.
+              </p>
+            </div>
+            <div class="timeline-step" data-reveal>
+              <span class="font-mono text-xs text-muted">2025</span>
+              <h3 class="mt-1 font-display text-xl font-700">Now</h3>
+              <p class="mt-2 max-w-[48ch] text-sm text-paper/70">
+                Mostly brand identity, editorial layout, and packaging, for clients who want a
+                system, not just a logo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Selected clients -->
+      <section class="border-t border-line">
+        <div class="container-page px-6 py-24 lg:px-10 lg:py-32">
+          <h2 data-split-reveal class="font-display text-3xl font-700 lg:text-4xl">Selected clients</h2>
+          <ul class="mt-10 divide-y divide-line border-y border-line" data-reveal>
+            <li class="flex items-baseline justify-between gap-6 py-5">
+              <span class="font-display text-xl font-700">Kinema Film Festival</span>
+              <span class="font-mono text-xs uppercase tracking-[0.08em] text-muted">2025</span>
+            </li>
+            <li class="flex items-baseline justify-between gap-6 py-5">
+              <span class="font-display text-xl font-700">Undertow Records</span>
+              <span class="font-mono text-xs uppercase tracking-[0.08em] text-muted">2024</span>
+            </li>
+            <li class="flex items-baseline justify-between gap-6 py-5">
+              <span class="font-display text-xl font-700">Maren Skincare</span>
+              <span class="font-mono text-xs uppercase tracking-[0.08em] text-muted">2024</span>
+            </li>
+            <li class="flex items-baseline justify-between gap-6 py-5">
+              <span class="font-display text-xl font-700">Signal Quarterly</span>
+              <span class="font-mono text-xs uppercase tracking-[0.08em] text-muted">2023</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="relative isolate border-t border-line">
+        <div class="ghost-text ghost-text--compact" aria-hidden="true"><span>Hello</span></div>
+        <div class="container-page px-6 py-24 text-center lg:px-10 lg:py-32">
+          <h2 data-split-reveal class="font-display text-[clamp(2rem,4.5vw,3.25rem)] font-800 leading-[1.05]">
+            Got a project in mind?
+          </h2>
+          <a
+            href="./index.html#contact"
+            data-magnetic
+            class="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-500 text-ink transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
+            >Get in touch</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="container-page flex flex-col gap-4 px-6 py-8 text-sm text-muted lg:flex-row lg:items-center lg:justify-between lg:px-10">
+        <p>© <span data-year></span> Carol Fares</p>
+        <a href="./index.html#work" class="hover:text-paper">Back to work</a>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
